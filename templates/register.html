@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post" onsubmit="return validateForm(event)">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="password" id="password" placeholder="Password" type="password">
+        </div>
+        <small>Password must be at least 8 characters long and contain a number.</small>
+        <br>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="confirmation" id="passwordA" placeholder="Password(Again)" type="password">
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+
+    <script>
+        function validateForm(event) {
+            var password = document.getElementById("password").value;
+            var passwordA = document.getElementById("passwordA").value;
+
+            // Check if password is at least 8 characters and contains a number
+            if (password.length < 8 || !/\d/.test(password)) {
+                alert("Password must be at least 8 characters long and contain a number.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+{% endblock %}
